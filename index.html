@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colegio Montano - Digital Blackboard: Psychology Research Proposal</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            montano: {
+              blue: '#1269A8',
+              yellow: '#F7D615',
+              green: '#54887D',
+              lightBlue: '#88B5C7',
+              olive: '#A6B046',
+              bg: '#F2F5E9'
+            }
+          },
+          fontFamily: {
+            sans: ['Segoe UI', 'Tahoma', 'Verdana', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #F2F5E9;
+      font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    }
+    .tab-active {
+      background-color: #1269A8 !important;
+      color: #FFFFFF !important;
+      border-bottom: 4px solid #F7D615;
+    }
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+    .accordion-content.open {
+      max-height: 1000px;
+      transition: max-height 0.5s ease-in;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col text-gray-800">
+
+  <!-- TOP HEADER / NAVBAR -->
+  <header class="bg-montano-blue text-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-4">
+      <!-- Logo and Institution -->
+      <div class="flex items-center space-x-3">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyEop0yf6lZ7Jk9MILZxF1rBj4Oqs5esyhIQ&s" 
+             alt="Colegio Montano Logo" 
+             class="h-12 w-auto bg-white p-1 rounded-md shadow"
+             onerror="this.src='https://placehold.co/100x100/1269A8/ffffff?text=Montano'">
+        <div>
+          <h1 class="text-xl font-bold tracking-wide text-montano-yellow">COLEGIO MONTANO</h1>
+          <p class="text-xs text-montano-lightBlue font-medium">Interactive Digital Blackboard • Pedagogical Model</p>
+        </div>
+      </div>
+
+      <!-- Quick Class Meta Badge -->
+      <div class="hidden lg:flex items-center space-x-6 text-sm bg-white/10 px-4 py-2 rounded-lg border border-white/20">
+        <div><span class="text-montano-yellow font-semibold">Course:</span> Psychology</div>
+        <div><span class="text-montano-yellow font-semibold">Grade:</span> 4th High School</div>
+        <div><span class="text-montano-yellow font-semibold">Unit:</span> 2 (Plan #8)</div>
+        <div><span class="text-montano-yellow font-semibold">Teacher:</span> Ms. Elysa López</div>
+      </div>
+
+      <!-- Fullscreen Toggle Button -->
+      <button onclick="toggleFullScreen()" class="flex items-center space-x-2 bg-montano-yellow hover:bg-yellow-400 text-montano-blue font-bold px-4 py-2 rounded-lg shadow transition duration-200 focus:outline-none">
+        <i data-lucide="maximize" id="fullscreen-icon" class="w-5 h-5"></i>
+        <span id="fullscreen-text" class="text-sm">Fullscreen</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6 flex flex-col gap-6">
+
+    <!-- INSTITUTIONAL & CURRICULAR HEADER CARD -->
+    <section class="bg-white rounded-xl shadow-md border-l-8 border-montano-blue p-5">
+      <div class="flex flex-col md:flex-row justify-between gap-4">
+        <div class="space-y-2 flex-grow">
+          <div class="flex items-center gap-2">
+            <span class="bg-montano-olive text-white text-xs font-bold px-2.5 py-1 rounded-full uppercase">May 10th - 14th</span>
+            <span class="bg-montano-lightBlue text-montano-blue text-xs font-bold px-2.5 py-1 rounded-full uppercase">Psychology</span>
+          </div>
+          <h2 class="text-2xl font-extrabold text-montano-blue">Building a Research Proposal</h2>
+          <p class="text-sm text-gray-600">
+            <strong>Subtopic:</strong> Aligning question, hypothesis, method, sample, instrument, ethical safeguards, and planned analysis; peer review and revision.
+          </p>
+        </div>
+
+        <!-- CNB & Montano Habits Badges -->
+        <div class="md:w-1/3 bg-montano-bg p-3 rounded-lg border border-montano-green/20 space-y-2 text-xs">
+          <div>
+            <span class="font-bold text-montano-green flex items-center gap-1">
+              <i data-lucide="award" class="w-4 h-4"></i> CNB Competency & Learning Outcome:
+            </span>
+            <p class="text-gray-700 italic">Designs scientific research proposals applying psychological methodologies, tools, and strict ethical standards.</p>
+          </div>
+          <hr class="border-gray-300">
+          <div>
+            <span class="font-bold text-montano-blue flex items-center gap-1">
+              <i data-lucide="star" class="w-4 h-4"></i> Montano Habits & Key Skills:
+            </span>
+            <div class="flex flex-wrap gap-1 mt-1">
+              <span class="bg-white text-montano-blue border border-montano-blue/30 px-2 py-0.5 rounded text-[11px] font-semibold">Habit 2: Begin with the End in Mind</span>
+              <span class="bg-white text-montano-blue border border-montano-blue/30 px-2 py-0.5 rounded text-[11px] font-semibold">Habit 4: Think Win-Win</span>
+              <span class="bg-white text-montano-green border border-montano-green/30 px-2 py-0.5 rounded text-[11px] font-semibold">Critical Thinking</span>
+              <span class="bg-white text-montano-green border border-montano-green/30 px-2 py-0.5 rounded text-[11px] font-semibold">Peer Feedback</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVIGATION TABS -->
+    <div class="flex flex-wrap gap-2 border-b-2 border-montano-blue/20 pb-2">
+      <button onclick="switchTab('tab1')" id="btn-tab1" class="tab-btn tab-active flex items-center gap-2 px-5 py-3 rounded-t-lg font-bold text-sm bg-white text-montano-blue shadow hover:bg-montano-lightBlue/20 transition">
+        <i data-lucide="zap" class="w-4 h-4 text-montano-yellow"></i>
+        Tab I: Review & Warm-up (5 min)
+      </button>
+      <button onclick="switchTab('tab2')" id="btn-tab2" class="tab-btn flex items-center gap-2 px-5 py-3 rounded-t-lg font-bold text-sm bg-white text-montano-blue shadow hover:bg-montano-lightBlue/20 transition">
+        <i data-lucide="user" class="w-4 h-4 text-montano-blue"></i>
+        Tab II: Modeling & Individual Work (35 min)
+      </button>
+      <button onclick="switchTab('tab3')" id="btn-tab3" class="tab-btn flex items-center gap-2 px-5 py-3 rounded-t-lg font-bold text-sm bg-white text-montano-blue shadow hover:bg-montano-lightBlue/20 transition">
+        <i data-lucide="users" class="w-4 h-4 text-montano-green"></i>
+        Tab III: Peer Review (10 min)
+      </button>
+      <button onclick="switchTab('tab4')" id="btn-tab4" class="tab-btn flex items-center gap-2 px-5 py-3 rounded-t-lg font-bold text-sm bg-white text-montano-blue shadow hover:bg-montano-lightBlue/20 transition">
+        <i data-lucide="check-square" class="w-4 h-4 text-montano-olive"></i>
+        Tab IV: Portfolio & Reflection (10 min)
+      </button>
+      <button onclick="switchTab('tab-rubric')" id="btn-tab-rubric" class="tab-btn flex items-center gap-2 px-5 py-3 rounded-t-lg font-bold text-sm bg-montano-yellow text-montano-blue font-extrabold shadow hover:bg-yellow-300 transition ml-auto">
+        <i data-lucide="clipboard-check" class="w-4 h-4"></i>
+        Assessment Checklist
+      </button>
+    </div>
+
+    <!-- TAB CONTENTS -->
+    <div id="tab-container" class="bg-white rounded-b-xl rounded-tr-xl p-6 shadow-md border border-gray-200 flex-grow">
+
+      <!-- TAB I: INTRODUCCIÓN MOTIVANTE & REPASO -->
+      <div id="tab1" class="tab-content space-y-6">
+        <div class="flex justify-between items-center border-b pb-3 border-gray-100">
+          <h3 class="text-xl font-bold text-montano-blue flex items-center gap-2">
+            <i data-lucide="clock" class="w-5 h-5 text-montano-green"></i>
+            Phase I: Review of Research Proposal Parts (5 Minutes)
+          </h3>
+          <span class="bg-montano-yellow/30 text-montano-blue text-xs font-bold px-3 py-1 rounded-full">Diagnostic & Warm-up</span>
+        </div>
+
+        <p class="text-gray-700">
+          Welcome to class! Today we align all structural components of a psychological research proposal. Let's start with a quick brain sparker to recall essential components.
+        </p>
+
+        <!-- Interactive Component Matching / Drag-and-Click Challenge -->
+        <div class="bg-montano-bg p-5 rounded-xl border border-montano-olive/30 space-y-4">
+          <h4 class="font-bold text-montano-blue text-md flex items-center gap-2">
+            <i data-lucide="help-circle" class="w-5 h-5 text-montano-olive"></i>
+            Interactive Flash Activity: "Align the Component"
+          </h4>
+          <p class="text-sm text-gray-600">Click on any core element below to reveal its key requirement and alignment check.</p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+            <!-- Item 1 -->
+            <button onclick="toggleAccordion('warmup-1')" class="p-3 bg-white hover:bg-montano-lightBlue/10 border border-montano-blue/30 rounded-lg text-left shadow-sm flex justify-between items-center font-semibold text-montano-blue text-sm">
+              <span>1. Research Question</span>
+              <i data-lucide="chevron-down" class="w-4 h-4 text-montano-blue"></i>
+            </button>
+            <!-- Item 2 -->
+            <button onclick="toggleAccordion('warmup-2')" class="p-3 bg-white hover:bg-montano-lightBlue/10 border border-montano-blue/30 rounded-lg text-left shadow-sm flex justify-between items-center font-semibold text-montano-blue text-sm">
+              <span>2. Hypothesis</span>
+              <i data-lucide="chevron-down" class="w-4 h-4 text-montano-blue"></i>
+            </button>
+            <!-- Item 3 -->
+            <button onclick="toggleAccordion('warmup-3')" class="p-3 bg-white hover:bg-montano-lightBlue/10 border border-montano-blue/30 rounded-lg text-left shadow-sm flex justify-between items-center font-semibold text-montano-blue text-sm">
+              <span>3. Ethical Safeguards</span>
+              <i data-lucide="chevron-down" class="w-4 h-4 text-montano-blue"></i>
+            </button>
+          </div>
+
+          <!-- Revealed Details -->
+          <div id="warmup-1" class="accordion-content bg-white p-4 rounded-lg border border-montano-blue text-xs text-gray-700 space-y-1">
+            <span class="font-bold text-montano-blue">Question Alignment Rule:</span> Must be testable, non-judgmental, and specifically target psychological variables (e.g., anxiety levels vs. social media consumption).
+          </div>
+          <div id="warmup-2" class="accordion-content bg-white p-4 rounded-lg border border-montano-blue text-xs text-gray-700 space-y-1">
+            <span class="font-bold text-montano-blue">Hypothesis Alignment Rule:</span> Directly predicts the directional relationship between Independent and Dependent variables based on prior research theory.
+          </div>
+          <div id="warmup-3" class="accordion-content bg-white p-4 rounded-lg border border-montano-blue text-xs text-gray-700 space-y-1">
+            <span class="font-bold text-montano-blue">Ethical Safeguards Rule:</span> Must guarantee informed consent, confidentiality, right to withdraw, and debriefing protocol (APA standards).
+          </div>
+        </div>
+
+        <div class="p-4 bg-montano-lightBlue/20 rounded-lg border-l-4 border-montano-blue text-sm text-montano-blue flex items-center gap-3">
+          <i data-lucide="compass" class="w-6 h-6 flex-shrink-0"></i>
+          <div>
+            <strong>Montano Habit Connection:</strong> <em>Habit 2 - Begin with the End in Mind.</em> A proposal is your roadmap. Without alignment between question, method, and ethics, the research loses validity.
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB II: MODELING & TRABAJO INDIVIDUAL -->
+      <div id="tab2" class="tab-content hidden space-y-6">
+        <div class="flex justify-between items-center border-b pb-3 border-gray-100">
+          <h3 class="text-xl font-bold text-montano-blue flex items-center gap-2">
+            <i data-lucide="edit-3" class="w-5 h-5 text-montano-green"></i>
+            Phase II: Modeling (15 min) & Individual Work (20 min)
+          </h3>
+          <span class="bg-montano-green text-white text-xs font-bold px-3 py-1 rounded-full">Formative Stage</span>
+        </div>
+
+        <!-- Teacher Modeling Section -->
+        <div class="bg-montano-bg p-5 rounded-xl border border-montano-blue/30 space-y-3">
+          <h4 class="font-bold text-montano-blue flex items-center gap-2">
+            <i data-lucide="layers" class="w-5 h-5 text-montano-blue"></i>
+            15-Min Modeling: Exemplar Mini Research Proposal Alignment
+          </h4>
+          <p class="text-sm text-gray-700">
+            Review the teacher's model below. Notice how every component logically flows into the next without contradictions.
+          </p>
+
+          <!-- Toggleable Teacher Exemplar -->
+          <button onclick="toggleAccordion('teacher-model')" class="w-full bg-montano-blue text-white font-bold p-3 rounded-lg flex justify-between items-center shadow hover:bg-blue-800 transition">
+            <span>Click to Reveal / Hide the Teacher Exemplar Proposal</span>
+            <i data-lucide="eye" class="w-5 h-5"></i>
+          </button>
+
+          <div id="teacher-model" class="accordion-content bg-white p-5 rounded-lg border border-gray-300 space-y-3 text-xs">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="p-3 bg-blue-50 rounded border border-blue-200">
+                <span class="font-bold text-montano-blue block">1. Research Question:</span>
+                Does 15 minutes of mindfulness meditation reduce pre-exam physiological anxiety in high school seniors?
+              </div>
+              <div class="p-3 bg-blue-50 rounded border border-blue-200">
+                <span class="font-bold text-montano-blue block">2. Hypothesis:</span>
+                Students who complete 15 minutes of guided meditation will score significantly lower on the State-Trait Anxiety Inventory (STAI) compared to a control group.
+              </div>
+              <div class="p-3 bg-blue-50 rounded border border-blue-200">
+                <span class="font-bold text-montano-blue block">3. Method & Sample:</span>
+                Experimental design (Randomized Control Trial). Sample: 40 volunteers from 4th High School.
+              </div>
+              <div class="p-3 bg-blue-50 rounded border border-blue-200">
+                <span class="font-bold text-montano-blue block">4. Instrument & Analysis:</span>
+                STAI standardized questionnaire + heart rate monitors. Data analysis via Independent Samples t-Test.
+              </div>
+            </div>
+            <div class="p-3 bg-yellow-50 rounded border border-yellow-300">
+              <span class="font-bold text-amber-800 block">5. Ethical Safeguards:</span>
+              Parental consent forms obtained; right to withdraw at any time; anonymity protected via participant codes; full debriefing provided after testing.
+            </div>
+          </div>
+        </div>
+
+        <!-- Student Individual Work prompt -->
+        <div class="bg-white p-5 rounded-xl border-2 border-montano-blue shadow-sm space-y-4">
+          <h4 class="font-bold text-montano-blue text-md flex items-center gap-2">
+            <i data-lucide="user-check" class="w-5 h-5 text-montano-olive"></i>
+            20-Min Student Activity: Complete or Revise Your Proposal
+          </h4>
+          <p class="text-sm text-gray-700">
+            Working individually in your research logbooks or digital drive, draft or refine your 7 key proposal pillars using the alignment interactive tool below.
+          </p>
+
+          <!-- Interactive Proposal Drafting Guide -->
+          <div class="space-y-3">
+            <div class="p-3 bg-montano-bg rounded-lg border border-gray-200">
+              <label class="block text-xs font-bold text-montano-blue mb-1">Your Research Question (Check for clarity and measurable variables):</label>
+              <input type="text" placeholder="e.g., What is the impact of sleep duration on working memory efficiency in adolescents?" class="w-full text-xs p-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-montano-blue">
+            </div>
+
+            <div class="p-3 bg-montano-bg rounded-lg border border-gray-200">
+              <label class="block text-xs font-bold text-montano-blue mb-1">Method & Instrument Selection:</label>
+              <select class="w-full text-xs p-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-montano-blue">
+                <option>Select Method Paradigm...</option>
+                <option>Quantitative Experimental (Control vs. Experimental Group)</option>
+                <option>Quantitative Correlational (Survey / Assessment Scales)</option>
+                <option>Qualitative Case Study / In-depth Interviews</option>
+                <option>Mixed-Methods Approach</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB III: PEER REVIEW -->
+      <div id="tab3" class="tab-content hidden space-y-6">
+        <div class="flex justify-between items-center border-b pb-3 border-gray-100">
+          <h3 class="text-xl font-bold text-montano-blue flex items-center gap-2">
+            <i data-lucide="users" class="w-5 h-5 text-montano-green"></i>
+            Phase III: Collaborative Peer Review (10 Minutes)
+          </h3>
+          <span class="bg-montano-olive text-white text-xs font-bold px-3 py-1 rounded-full">Cooperative Learning</span>
+        </div>
+
+        <div class="p-4 bg-montano-lightBlue/20 rounded-lg border-l-4 border-montano-green text-sm text-gray-800 space-y-1">
+          <strong class="text-montano-green flex items-center gap-2">
+            <i data-lucide="heart" class="w-4 h-4"></i> Montano Habits in Action:
+          </strong>
+          <p class="text-xs">
+            <em>Habit 4: Think Win-Win</em> & <em>Habit 5: Seek First to Understand, Then to Be Understood.</em> Pair up with a peer. Offer constructive, honest, and respectful feedback using the interactive checklist below.
+          </p>
+        </div>
+
+        <!-- Peer Review Interactive Form -->
+        <div class="bg-montano-bg p-5 rounded-xl border border-montano-blue/30 space-y-4">
+          <h4 class="font-bold text-montano-blue text-sm flex items-center gap-2">
+            <i data-lucide="check-circle-2" class="w-5 h-5 text-montano-blue"></i>
+            Peer Review Check-off Tool (Partner Pair Review)
+          </h4>
+
+          <div class="space-y-3">
+            <label class="flex items-start gap-3 p-3 bg-white rounded-lg border border-gray-200 cursor-pointer hover:bg-gray-50">
+              <input type="checkbox" class="mt-1 h-4 w-4 text-montano-blue rounded focus:ring-montano-blue">
+              <div class="text-xs">
+                <span class="font-bold text-montano-blue block">1. Internal Logic Alignment</span>
+                Does the hypothesis directly address the research question, and is the method capable of testing it?
+              </div>
+            </label>
+
+            <label class="flex items-start gap-3 p-3 bg-white rounded-lg border border-gray-200 cursor-pointer hover:bg-gray-50">
+              <input type="checkbox" class="mt-1 h-4 w-4 text-montano-blue rounded focus:ring-montano-blue">
+              <div class="text-xs">
+                <span class="font-bold text-montano-blue block">2. Sampling & Feasibility</span>
+                Is the sample target realistic for high school research bounds, and is the instrument valid?
+              </div>
+            </label>
+
+            <label class="flex items-start gap-3 p-3 bg-white rounded-lg border border-gray-200 cursor-pointer hover:bg-gray-50">
+              <input type="checkbox" class="mt-1 h-4 w-4 text-montano-blue rounded focus:ring-montano-blue">
+              <div class="text-xs">
+                <span class="font-bold text-montano-blue block">3. APA Ethical Rigor</span>
+                Are informed consent, privacy safeguards, and harm prevention measures clearly explicitly defined?
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB IV: PORTFOLIO & REFLECTION -->
+      <div id="tab4" class="tab-content hidden space-y-6">
+        <div class="flex justify-between items-center border-b pb-3 border-gray-100">
+          <h3 class="text-xl font-bold text-montano-blue flex items-center gap-2">
+            <i data-lucide="folder-check" class="w-5 h-5 text-montano-green"></i>
+            Phase IV: Portfolio Evidence & Reflection (10 Minutes)
+          </h3>
+          <span class="bg-montano-blue text-white text-xs font-bold px-3 py-1 rounded-full">Closure & Metacognition</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Step 1: Portfolio -->
+          <div class="p-4 bg-white rounded-xl border border-montano-blue/30 shadow-sm space-y-2">
+            <h4 class="font-bold text-montano-blue text-sm flex items-center gap-2">
+              <i data-lucide="upload-cloud" class="w-4 h-4 text-montano-blue"></i>
+              1. Portfolio Evidence Preparation
+            </h4>
+            <p class="text-xs text-gray-600">
+              Finalize your revised draft incorporating peer feedback. Upload or store your final proposal draft into your **Unit 2 Digital Psychology Portfolio**.
+            </p>
+          </div>
+
+          <!-- Step 2: Metacognitive Reflection -->
+          <div class="p-4 bg-white rounded-xl border border-montano-green/30 shadow-sm space-y-2">
+            <h4 class="font-bold text-montano-green text-sm flex items-center gap-2">
+              <i data-lucide="brain" class="w-4 h-4 text-montano-green"></i>
+              2. Metacognitive Exit Ticket
+            </h4>
+            <p class="text-xs text-gray-600">
+              Reflect on today's process: Which element of your research proposal required the most significant revision, and how did peer review help align it?
+            </p>
+          </div>
+        </div>
+
+        <!-- Interactive Reflection Box -->
+        <div class="bg-montano-bg p-4 rounded-xl border border-gray-300 space-y-2">
+          <label class="block text-xs font-bold text-montano-blue">Quick Exit Reflection (Type & Save locally):</label>
+          <textarea rows="3" class="w-full text-xs p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-montano-blue" placeholder="Write your reflection here..."></textarea>
+          <button onclick="alert('Reflection saved to session memory!')" class="bg-montano-green text-white text-xs font-bold px-4 py-2 rounded shadow hover:bg-emerald-700 transition">
+            Save Reflection
+          </button>
+        </div>
+      </div>
+
+      <!-- TAB V: ASSESSMENT RUBRIC / CHECKLIST -->
+      <div id="tab-rubric" class="tab-content hidden space-y-6">
+        <div class="flex justify-between items-center border-b pb-3 border-gray-100">
+          <h3 class="text-xl font-bold text-montano-blue flex items-center gap-2">
+            <i data-lucide="award" class="w-5 h-5 text-montano-yellow"></i>
+            Plenary & Research Proposal Assessment Checklist
+          </h3>
+          <span class="bg-montano-yellow text-montano-blue text-xs font-extrabold px-3 py-1 rounded-full">Summative & Formative Evaluation</span>
+        </div>
+
+        <p class="text-xs text-gray-600">
+          Use this interactive rubric to evaluate student proposal presentations during the plenary session or for final portfolio assessment.
+        </p>
+
+        <!-- Interactive Checklist Table -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs text-gray-700 border-collapse">
+            <thead>
+              <tr class="bg-montano-blue text-white">
+                <th class="p-3 rounded-tl-lg">Evaluation Criteria</th>
+                <th class="p-3">Exemplary (4 pts)</th>
+                <th class="p-3">Proficient (3 pts)</th>
+                <th class="p-3">Developing (2 pts)</th>
+                <th class="p-3 rounded-tr-lg text-center">Score</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 border">
+              <tr class="hover:bg-gray-50">
+                <td class="p-3 font-bold text-montano-blue">1. Alignment & Logic</td>
+                <td class="p-3">Flawless alignment between question, hypothesis, method, & analysis.</td>
+                <td class="p-3">Minor gaps in logic; hypothesis generally supports question.</td>
+                <td class="p-3">Inconsistencies between question and methodology.</td>
+                <td class="p-3 text-center font-bold">
+                  <input type="number" min="0" max="4" class="w-12 text-center p-1 border rounded focus:ring-1 focus:ring-montano-blue" value="4">
+                </td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="p-3 font-bold text-montano-blue">2. Ethical Rigor</td>
+                <td class="p-3">Comprehensive APA ethical protocols clearly outlined.</td>
+                <td class="p-3">Standard safeguards included (consent & debriefing).</td>
+                <td class="p-3">Ethical safeguards vague or missing critical elements.</td>
+                <td class="p-3 text-center font-bold">
+                  <input type="number" min="0" max="4" class="w-12 text-center p-1 border rounded focus:ring-1 focus:ring-montano-blue" value="4">
+                </td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="p-3 font-bold text-montano-blue">3. Peer Feedback & Revision</td>
+                <td class="p-3">Actively incorporated peer feedback to enhance proposal quality.</td>
+                <td class="p-3">Reviewed peer feedback with minor edits made.</td>
+                <td class="p-3">Minimal participation in peer feedback process.</td>
+                <td class="p-3 text-center font-bold">
+                  <input type="number" min="0" max="4" class="w-12 text-center p-1 border rounded focus:ring-1 focus:ring-montano-blue" value="4">
+                </td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="p-3 font-bold text-montano-blue">4. Defense / Plenary Clarity</td>
+                <td class="p-3">Communicates research rationale clearly; responds effectively to queries.</td>
+                <td class="p-3">Explains proposal clearly; answers most questions well.</td>
+                <td class="p-3">Struggles to justify methodological choices when questioned.</td>
+                <td class="p-3 text-center font-bold">
+                  <input type="number" min="0" max="4" class="w-12 text-center p-1 border rounded focus:ring-1 focus:ring-montano-blue" value="4">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-montano-blue text-white text-xs py-4 px-6 text-center border-t-4 border-montano-yellow mt-6">
+    <p>© Colegio Montano • Institutional Pedagogical Model • Formative Excellence</p>
+  </footer>
+
+  <!-- JAVASCRIPT FOR INTERACTIVITY AND FULLSCREEN -->
+  <script>
+    // Lucide Icons Initialization
+    lucide.createIcons();
+
+    // Tab Switching Functionality
+    function switchTab(tabId) {
+      // Hide all contents
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(content => content.classList.add('hidden'));
+
+      // Remove active class from all buttons
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => btn.classList.remove('tab-active'));
+
+      // Show targeted tab
+      const targetContent = document.getElementById(tabId);
+      if (targetContent) {
+        targetContent.classList.remove('hidden');
+      }
+
+      // Highlight active button
+      const activeBtn = document.getElementById('btn-' + tabId);
+      if (activeBtn) {
+        activeBtn.classList.add('tab-active');
+      }
+    }
+
+    // Toggle Accordion Panels
+    function toggleAccordion(elementId) {
+      const content = document.getElementById(elementId);
+      if (content) {
+        content.classList.toggle('open');
+      }
+    }
+
+    // Fullscreen API Logic
+    function toggleFullScreen() {
+      const icon = document.getElementById('fullscreen-icon');
+      const text = document.getElementById('fullscreen-text');
+
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().then(() => {
+          text.textContent = "Exit Fullscreen";
+          icon.setAttribute('data-lucide', 'minimize');
+          lucide.createIcons();
+        }).catch(err => {
+          alert(`Error trying to enable fullscreen mode: ${err.message}`);
+        });
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen().then(() => {
+            text.textContent = "Fullscreen";
+            icon.setAttribute('data-lucide', 'maximize');
+            lucide.createIcons();
+          });
+        }
+      }
+    }
+  </script>
+</body>
+</html>
